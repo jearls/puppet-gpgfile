@@ -48,7 +48,37 @@ describe 'gpgfile', :type => :define do
         'mode'    => '0600' ,
         'replace' => false ,
       })
-      is_expected.to contain_exec('gpgfile-/tmp/data').with_command("/usr/bin/gpg --decrypt --keyring 'secring.gpg' < '/tmp/data.gpg' > '/tmp/data'")
+      is_expected.to contain_exec('gpgfile-/tmp/data').with({
+        'command' => "/usr/bin/gpg --decrypt --keyring 'secring.gpg' < '/tmp/data.gpg' > '/tmp/data'" ,
+        'noop'    => false ,
+      })
+    }
+  end
+
+  context 'with ensure => absent' do
+    let(:params) {{ :ensure => 'absent' , :content => 'data'}}
+    it {
+      is_expected.to contain_file('/tmp/data.gpg').with_ensure('absent')
+      is_expected.to contain_file('/tmp/data').with_ensure('absent')
+      is_expected.to contain_exec('gpgfile-/tmp/data').with_noop(true)
+    }
+  end
+
+  context 'with ensure => encrypted' do
+    let(:params) {{ :ensure => 'encrypted' , :content => 'data'}}
+    it {
+      is_expected.to contain_file('/tmp/data.gpg').with_ensure('file')
+      is_expected.to contain_file('/tmp/data').with_ensure('absent')
+      is_expected.to contain_exec('gpgfile-/tmp/data').with_noop(true)
+    }
+  end
+
+  context 'with ensure => decrypted' do
+    let(:params) {{ :ensure => 'decrypted' , :content => 'data'}}
+    it {
+      is_expected.to contain_file('/tmp/data.gpg').with_ensure('file')
+      is_expected.to contain_file('/tmp/data').with_ensure('file')
+      is_expected.to contain_exec('gpgfile-/tmp/data').with_noop(false)
     }
   end
 

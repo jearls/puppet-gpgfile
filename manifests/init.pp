@@ -136,8 +136,29 @@ define gpgfile (
     fail('encrypted and decrypted files must not be identical')
   }
 
+  case $ensure {
+    absent: {
+      $encrypted_ensure = absent
+      $decrypted_ensure = absent
+      $exec_noop = true
+    }
+    encrypted: {
+      $encrypted_ensure = file
+      $decrypted_ensure = undef
+      $exec_noop = true
+    }
+    decrypted, present: {
+      $encrypted_ensure = file
+      $decrypted_ensure = file
+      $exec_noop = false
+    }
+    default: {
+      fail('Should not have gotten here!')
+    }
+  }
+
   file { $encrypted_file:
-    ensure  => file ,
+    ensure  => $encrypted_ensure ,
     owner   => $owner ,
     group   => $group ,
     mode    => $real_encrypted_mode ,
@@ -146,13 +167,15 @@ define gpgfile (
     notify  => Exec["gpgfile-${decrypted_file}"] ,
   }
 
-  file { $decrypted_file:
-    ensure  => file ,
-    owner   => $owner ,
-    group   => $group ,
-    mode    => $mode ,
-    replace => false ,
-    notify  => Exec["gpgfile-${decrypted_file}"] ,
+  if $decrypted_ensure {
+    file { $decrypted_file:
+      ensure  => $decrypted_ensure ,
+      owner   => $owner ,
+      group   => $group ,
+      mode    => $mode ,
+      replace => false ,
+      notify  => Exec["gpgfile-${decrypted_file}"] ,
+    }
   }
 
   $esc_keyring = regsubst($keyring, "'", "'\\\\''", 'G')
@@ -169,6 +192,7 @@ define gpgfile (
     refreshonly => true ,
     user        => $owner ,
     group       => $group ,
+    noop        => $exec_noop ,
   }
 
 }
