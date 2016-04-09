@@ -1,5 +1,5 @@
 {
-  "name": "puppet-gpgfile",
+  "name": "JohnsonEarls-gpgfile",
   "version": "0.1.0",
   "author": "Johnson Earls",
   "summary": "Install a gpg-encrypted file onto a system, decrypting it locally on the system.",
