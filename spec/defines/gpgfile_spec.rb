@@ -68,7 +68,7 @@ describe 'gpgfile', :type => :define do
     let(:params) {{ :ensure => 'encrypted' , :content => 'data'}}
     it {
       is_expected.to contain_file('/tmp/data.gpg').with_ensure('file')
-      is_expected.to contain_file('/tmp/data').with_ensure('absent')
+      is_expected.to_not contain_file('/tmp/data')
       is_expected.to contain_exec('gpgfile-/tmp/data').with_noop(true)
     }
   end
