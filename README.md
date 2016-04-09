@@ -109,9 +109,4 @@ Only tested on RedHat 5.x and 6.x systems.
 
 ## Development
 
-* Clone the [GitHub repository](https://github.com/jearls/puppet-gpgfile)
-* Create a topic branch for your fix or new feature
-* Make your changes
-* Add new `spec` tests for your changes
-* Ensure the `bundle exec rake spec` tests pass
-* Push back to github and open a pull request
+See [CONTRIBUTING.md](https://raw.githubusercontent.com/jearls/puppet-gpgfile/master/CONTRIBUTING.md)
