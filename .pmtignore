@@ -1,0 +1,9 @@
+Gemfile
+Gemfile.lock
+.travis.yml
+.gitignore
+.pmtignore
+Rakefile
+spec/
+tests/
+pkg/
