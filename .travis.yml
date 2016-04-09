@@ -4,7 +4,7 @@ before_install:
   - rm Gemfile.lock || true
 bundler_args: --without development
 script:
-  - "bundle exec rake spec"
+  - "(set -x ; bundle exec rake validate ; bundle exec rake lint ; bundle exec rake spec)"
 notifications:
   email: true
 rvm:
