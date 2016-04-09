@@ -9,18 +9,15 @@ notifications:
   email: true
 rvm:
   - 2.3.0-dev
-  - 2.0.0
   - 1.9.3
 
 env:
   - PUPPET_VERSION="~> 3.5.0"
   - PUPPET_VERSION="~> 4.0.0"
   - PUPPET_VERSION="~> 4.2.0"
-  - PUPPET_VERSION=">= 4.4.0" # should be latest?
+  - PUPPET_VERSION=">= 0" # should be latest?
 
 matrix:
   exclude:
     - rvm: 2.3.0-dev
-      env: PUPPET_VERSION="~> 3.5.0"
-    - rvm: 2.0.0-dev
       env: PUPPET_VERSION="~> 3.5.0"
