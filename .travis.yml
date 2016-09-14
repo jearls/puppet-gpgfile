@@ -8,23 +8,36 @@ script:
 notifications:
   email: true
 rvm:
-  - 2.3.0-dev
   - 2.2
+  - 2.1
   - 1.9.3
 
 env:
-  - PUPPET_VERSION="~> 2.7.0"
+  - PUPPET_VERSION="~> 2.7.0" DEPLOY_TO_FORGE=yes
   - PUPPET_VERSION="~> 3.8.0"
   - PUPPET_VERSION="~> 4.2.0"
   - PUPPET_VERSION="<  5.0.0" # latest 4.x series
 
 matrix:
   exclude:
-    - rvm: 2.3.0-dev
-      env: PUPPET_VERSION="~> 3.8.0"
-    - rvm: 2.3.0-dev
-      env: PUPPET_VERSION="~> 2.7.0"
     - rvm: 2.2
       env: PUPPET_VERSION="~> 3.8.0"
     - rvm: 2.2
-      env: PUPPET_VERSION="~> 2.7.0"
+      env: PUPPET_VERSION="~> 2.7.0" DEPLOY_TO_FORGE=yes
+    - rvm: 2.1
+      env: PUPPET_VERSION="~> 3.8.0"
+    - rvm: 2.1
+      env: PUPPET_VERSION="~> 2.7.0" DEPLOY_TO_FORGE=yes
+
+deploy:
+  provider: puppetforge
+  # Till https://github.com/travis-ci/dpl/issues/487 is closed
+  deploy:
+    branch: ha-bug-puppet-forge
+  user: JohnsonEarls
+  password:
+    secure: "1+52EcWmQ3mHIkNn1XkSYlH5efmtOCjw+x05hrBhIlpfV5h4TZ6POuxJ2GPpuxjE5dYMazt6DF2Lt4QTgocg/SS6mC4iBP6jVeQAkjZDZC5mMN/4wZnH6fHn+POXpHLT4tna3UdqAa8aiwWEwoDmtN6voTAtjoVtroBoS0njs97SwWBTut64glcI1iRHTqxFz4gLPw9RqKunzc+8r0pUh7QXioNMCenLT25a+G3W7+ccv7g0eG/wNLtaKV8e4hAf0NU34zqpP+l8w9Pku03INmSlbzXoUsq7xqvshojxPa7B+AnjP9RCcY0uX+lme5CPuByQmvbub7l/f3rqMFGTEtVti8kR+DNIgwsQqTh1Y5xeeeLVqkiIZlyMLPdm0q6PN+u6nX7dhTp/ttBet6ICrnEUvl16D1c2JEV7PPxOY4O621G56KwntI7VHn9nKt5XPYZ/w+0O75ffNiQRFuOdowUoSdCVf+bz3O9RwmAixiTxyrhR9XXV3D6RImTuDeO+7IL3+Blf7kNjxbBzU9eCByEg5Pt94YscLPEla+aFv7Ur0vKQB16ItWFHTU15ObfyMjnb9ON/By1bviaYSUjWvCJLSDWImN2I25TskJrV+EOUuE/BXA+ryWWJ77D87SvQ5tI6GlF1P/gk5quNaERvzOaXFtPc/qd8em+RMLTEcqg="
+  on:
+    tags: true
+    condition: "$DEPLOY_TO_FORGE = yes"
+
