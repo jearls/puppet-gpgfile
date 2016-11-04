@@ -10,7 +10,7 @@
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
 gpgfile { 'test':
-  ensure => decrypted ,
+  ensure  => decrypted ,
   content => 'content' ,
-  noop => true ,
+  noop    => true ,
 }

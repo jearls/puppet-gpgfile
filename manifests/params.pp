@@ -1,3 +1,7 @@
+# Class gpgfile::params
+# ===========================
+#
+# OS-based parameters
 
 class gpgfile::params {
   case $::osfamily {
