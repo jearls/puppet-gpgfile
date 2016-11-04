@@ -95,7 +95,9 @@ define gpgfile (
   }
 
   # validate `ensure`
-  validate_re($ensure, [ '^absent$', '^encrypted$', '^decrypted$', '^present$' ], '`ensure` must be one of `decrypted`, `encrypted`, `present`, or `absent`')
+  validate_re($ensure,
+              [ '^absent$', '^encrypted$', '^decrypted$', '^present$' ],
+              '`ensure` must be one of `decrypted`, `encrypted`, `present`, or `absent`')
 
   # validate mode: must be numeric, and must end with `0` digit.
   validate_re($mode, '^0[0-7][0-7]+0$', '`mode` must be numeric, and must end with `0`')
