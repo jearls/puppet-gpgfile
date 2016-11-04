@@ -2,11 +2,15 @@
 class gpgfile::params {
   case $::osfamily {
     'RedHat': {
-      $gpg_command = '/usr/bin/gpg'
+      $exec_path = [ '/bin', '/usr/bin' ]
+      $gpg_command = 'gpg'
+      $rm_command = 'rm'
     }
     default: {
       warning("Warning - unsupported OS family ${::osfamily} - correct operation not guaranteed")
-      $gpg_command = '/usr/bin/gpg'
+      $exec_path = [ '/bin', '/usr/bin' ]
+      $gpg_command = 'gpg'
+      $rm_command = 'rm'
     }
   }
 }

@@ -136,6 +136,10 @@ define gpgfile (
     fail('encrypted and decrypted files must not be identical')
   }
 
+  $esc_keyring = regsubst($keyring, "'", "'\\\\''", 'G')
+  $esc_enc_file = regsubst($encrypted_file, "'", "'\\\\''", 'G')
+  $esc_dec_file = regsubst($decrypted_file, "'", "'\\\\''", 'G')
+
   case $ensure {
     absent: {
       $encrypted_ensure = absent
@@ -178,16 +182,17 @@ define gpgfile (
     }
   }
 
-  $esc_keyring = regsubst($keyring, "'", "'\\\\''", 'G')
-  $esc_enc_file = regsubst($encrypted_file, "'", "'\\\\''", 'G')
-  $esc_dec_file = regsubst($decrypted_file, "'", "'\\\\''", 'G')
-
+  # decrypt the file using the correct filename
+  # on failure, remove the encrypted file so it will try again
   $gpg_exec = "${gpgfile::params::gpg_command} --decrypt \
 --keyring '${esc_keyring}' \
-< '${esc_enc_file}' \
-> '${esc_dec_file}'"
+-o '${esc_dec_file}' \
+--yes \
+'${esc_enc_file}' \
+|| ( ${gpgfile::params::rm_command} -f '${esc_enc_file}'; exit 2 )"
 
   exec { "gpgfile-${decrypted_file}":
+    path        => $gpgfile::params::exec_path ,
     command     => $gpg_exec ,
     refreshonly => true ,
     user        => $owner ,
