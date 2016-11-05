@@ -1,5 +1,23 @@
 # Change Log
 
+## [0.1.1](https://github.com/jearls/puppet-gpgfile/tree/0.1.1) (2016-11-05)
+[Full Changelog](https://github.com/jearls/puppet-gpgfile/compare/0.1.0...0.1.1)
+
+**Implemented enhancements:**
+
+- Simplify travis matrix [\#11](https://github.com/jearls/puppet-gpgfile/pull/11) ([jearls](https://github.com/jearls))
+- Make lint happy [\#10](https://github.com/jearls/puppet-gpgfile/pull/10) ([jearls](https://github.com/jearls))
+- Prepare for automated forge deployment [\#7](https://github.com/jearls/puppet-gpgfile/pull/7) ([jearls](https://github.com/jearls))
+- Split the Development section out of README as new CONTRIBUTING.md file [\#6](https://github.com/jearls/puppet-gpgfile/pull/6) ([jearls](https://github.com/jearls))
+- Add validate and lint to the travis checks [\#4](https://github.com/jearls/puppet-gpgfile/pull/4) ([jearls](https://github.com/jearls))
+- Add puppet compatibility to metadata [\#3](https://github.com/jearls/puppet-gpgfile/pull/3) ([jearls](https://github.com/jearls))
+- .travis.yml:  Build against older puppet versions for compatibility [\#2](https://github.com/jearls/puppet-gpgfile/pull/2) ([jearls](https://github.com/jearls))
+- Add .pmtignore file to strip down published module to minimum required [\#1](https://github.com/jearls/puppet-gpgfile/pull/1) ([jearls](https://github.com/jearls))
+
+**Fixed bugs:**
+
+- Remove target encrypted file if decryption fails [\#9](https://github.com/jearls/puppet-gpgfile/pull/9) ([jearls](https://github.com/jearls))
+
 ## [0.1.0](https://github.com/jearls/puppet-gpgfile/tree/0.1.0) (2016-04-09)
 
 
