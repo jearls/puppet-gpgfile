@@ -7,27 +7,23 @@ script:
   - "(set -x ; bundle exec rake validate ; bundle exec rake lint ; bundle exec rake spec)"
 notifications:
   email: true
-rvm:
-  - 2.2
-  - 2.1
-  - 1.9.3
-
-env:
-  - PUPPET_VERSION="~> 2.7.0" DEPLOY_TO_FORGE=yes
-  - PUPPET_VERSION="~> 3.8.0"
-  - PUPPET_VERSION="~> 4.2.0"
-  - PUPPET_VERSION="<  5.0.0" # latest 4.x series
 
 matrix:
-  exclude:
-    - rvm: 2.2
-      env: PUPPET_VERSION="~> 3.8.0"
-    - rvm: 2.2
-      env: PUPPET_VERSION="~> 2.7.0" DEPLOY_TO_FORGE=yes
+  include:
+    - rvm: 1.9.3
+      env: PUPPET_VERSION="~> 2.0"
+    - rvm: 1.9.3
+      env: PUPPET_VERSION="~> 3.0"
     - rvm: 2.1
-      env: PUPPET_VERSION="~> 3.8.0"
+      env: PUPPET_VERSION="~> 3.0"
     - rvm: 2.1
-      env: PUPPET_VERSION="~> 2.7.0" DEPLOY_TO_FORGE=yes
+      env: PUPPET_VERSION="~> 4.2" DEPLOY_TO_FORGE=yes
+    - rvm: 2.1
+      env: PUPPET_VERSION="< 5.0"
+    - rvm: 2.2
+      env: PUPPET_VERSION="~> 4.2"
+    - rvm: 2.2
+      env: PUPPET_VERSION="< 5.0"
 
 deploy:
   provider: puppetforge
