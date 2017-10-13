@@ -16,7 +16,6 @@ bundler_args: --without system_tests --without development
 rvm:
   - 2.3.1
   - 2.1.7
-  - 1.9.3
 env:
   - PUPPET_GEM_VERSION="~> 4.0" CHECK=spec
 matrix:
