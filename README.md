@@ -1,5 +1,7 @@
 # gpgfile
 
+[![Puppet Forge](http://img.shields.io/puppetforge/v/JohnsonEarls/gpgfile.svg)](https://forge.puppetlabs.com/JohnsonEarls/gpgfile) [![Build Status](https://travis-ci.org/jearls/puppet-gpgfile.svg?branch=master)](https://travis-ci.org/jearls/puppet-gpgfile)
+
 #### Table of Contents
 
 1. [Description](#description)
