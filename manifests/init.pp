@@ -188,8 +188,8 @@ define gpgfile (
   # on failure, remove the encrypted file so it will try again
   $gpg_exec = "${gpgfile::params::gpg_command} --decrypt \
 --keyring '${esc_keyring}' \
--o '${esc_dec_file}' \
 --yes \
+-o '${esc_dec_file}' \
 '${esc_enc_file}' \
 || ( ${gpgfile::params::rm_command} -f '${esc_enc_file}'; exit 2 )"
 
