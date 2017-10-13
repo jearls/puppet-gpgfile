@@ -28,20 +28,16 @@ group :development do
   gem "fast_gettext",                                  require: false if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.1.0')
   gem "json_pure", '<= 2.0.1',                         require: false if Gem::Version.new(RUBY_VERSION.dup) < Gem::Version.new('2.0.0')
   gem "json", '= 1.8.1',                               require: false if Gem::Version.new(RUBY_VERSION.dup) == Gem::Version.new('2.1.9')
-  gem "puppet-module-posix-default-r#{minor_version}", require: false, platforms: [:ruby] if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
-  gem "puppet-module-posix-dev-r#{minor_version}",     require: false, platforms: [:ruby] if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
-  gem "puppet-module-win-default-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw] if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
-  gem "puppet-module-win-dev-r#{minor_version}",       require: false, platforms: [:mswin, :mingw, :x64_mingw] if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
+  gem "puppet-module-posix-default-r#{minor_version}", require: false, platforms: [:ruby]
+  gem "puppet-module-posix-dev-r#{minor_version}",     require: false, platforms: [:ruby]
+  gem "puppet-module-win-default-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw]
+  gem "puppet-module-win-dev-r#{minor_version}",       require: false, platforms: [:mswin, :mingw, :x64_mingw]
+end
+
+group :release do
   gem "puppet-blacksmith"
   gem "activesupport", "< 5.0.0"
   gem "github_changelog_generator"
-end
-group :travisci do
-  gem "rake", '< 12.1.0',       require: false if ENV['TRAVIS'] and Gem::Version.new(RUBY_VERSION.dup) < Gem::Version.new('2.0.0')
-  gem "puppetlabs_spec_helper", require: false if ENV['TRAVIS']
-  gem "rubocop",                require: false if ENV['TRAVIS'] and Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
-  gem "rubocop-rspec",          require: false if ENV['TRAVIS'] and Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
-  gem "metadata-json-lint",     require: false if ENV['TRAVIS'] and Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.0.0')
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
