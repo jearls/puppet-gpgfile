@@ -146,16 +146,19 @@ define gpgfile (
     absent: {
       $encrypted_ensure = absent
       $decrypted_ensure = absent
+      $decrypted_replace = undef
       $exec_noop = true
     }
     encrypted: {
       $encrypted_ensure = file
       $decrypted_ensure = undef
+      $decrypted_replace = undef
       $exec_noop = true
     }
     decrypted, present: {
       $encrypted_ensure = file
       $decrypted_ensure = file
+      $decrypted_replace = false
       $exec_noop = false
     }
     default: {
@@ -179,7 +182,7 @@ define gpgfile (
       owner   => $owner ,
       group   => $group ,
       mode    => $mode ,
-      replace => false ,
+      replace => $decrypted_replace ,
       notify  => Exec["gpgfile-${decrypted_file}"] ,
     }
   }
