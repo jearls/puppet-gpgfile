@@ -1,7 +1,14 @@
 # Change Log
 
-## [0.1.1](https://github.com/jearls/puppet-gpgfile/tree/0.1.1) (2016-11-05)
-[Full Changelog](https://github.com/jearls/puppet-gpgfile/compare/0.1.0...0.1.1)
+## [0.1.2](https://github.com/jearls/puppet-gpgfile/tree/0.1.2) (2018-12-07)
+[Full Changelog](https://github.com/jearls/puppet-gpgfile/compare/v0.1.1...0.1.2)
+
+**Fixed bugs:**
+
+- Only pass `replace` to decrypted file when creating it. [\#17](https://github.com/jearls/puppet-gpgfile/pull/17) ([jearls](https://github.com/jearls))
+
+## [v0.1.1](https://github.com/jearls/puppet-gpgfile/tree/v0.1.1) (2016-11-05)
+[Full Changelog](https://github.com/jearls/puppet-gpgfile/compare/0.1.0...v0.1.1)
 
 **Implemented enhancements:**
 

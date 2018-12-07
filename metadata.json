@@ -1,6 +1,6 @@
 {
   "name": "JohnsonEarls-gpgfile",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Johnson Earls",
   "summary": "Install a gpg-encrypted file onto a system, decrypting it locally on the system.",
   "license": "Apache-2.0",
