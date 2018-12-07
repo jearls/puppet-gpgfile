@@ -1,2 +1,4 @@
 project=puppet-gpgfile
 include-labels=bug,enhancement
+pr-wo-labels=false
+issues-wo-labels=false
