@@ -1,0 +1,2 @@
+project=puppet-gpgfile
+include-labels=bug,enhancement
