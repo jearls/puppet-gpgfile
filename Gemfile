@@ -35,6 +35,7 @@ group :development do
 end
 
 group :release do
+  gem "puppetlabs_spec_helper"
   gem "puppet-blacksmith"
   gem "activesupport", "< 5.0.0"
   gem "github_changelog_generator"
