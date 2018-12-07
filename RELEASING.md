@@ -6,5 +6,4 @@
 * `git add CHANGELOG.md metadata.json`
 * `git commit -m "Bump commit to $(bundle exec rake module:version)"`
 * `bundle exec rake module:tag`
-* `git push origin --tags`
-* _(Let Travis deploy to the forge?)_
+* `git push origin && git push origin --tags`
